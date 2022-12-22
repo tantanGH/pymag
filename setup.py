@@ -20,7 +20,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'pymag=pymag.pymag:main'
+            'pymag=pymag.__main__:main'
         ]
     },
     packages=setuptools.find_packages(),
