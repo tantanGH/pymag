@@ -13,15 +13,20 @@ X680x０が現役だった時代に広く利用されていた軽量画像フォ
 
 ### インストール方法
 
-    $ pip install git+ssh://git@github.com/tantanGH/pymag.git
+    $ pip install git+https://github.com/tantanGH/pymag.git
 
 ---
 
 ### 使い方
 
-    import pymag
+pymag はライブラリモジュールですが、python の `-m` オプションを使って直接コマンドラインツールとして利用できます。基本的には変換元となる画像ファイル名と、変換先となるMAGファイル名を与えるだけです。
 
-    pymag.main()
+    $ python -m pymag <input-image-filename> <output-image-filename>
+
+ヘルプを見るには `-h` オプションまたは `--help` を使ってください。
+
+    $ python -m pymag -h
+    $ python -m pymag --help
 
     
 

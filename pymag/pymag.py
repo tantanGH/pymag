@@ -181,8 +181,7 @@ def save(input_image_name, \
         f.write(flag_data_bytes_b)
         f.write(pixel_data_bytes)
 
-if __name__ == "__main__":
-
+def main():
     # command line parameters
     parser = argparse.ArgumentParser()
     parser.add_argument("infile",help="input image filename")
@@ -202,3 +201,6 @@ if __name__ == "__main__":
          args.width,args.height,args.colors,\
          args.user,args.memo,\
          args.method,args.dither,args.kmeans)
+
+if __name__ == "__main__":
+    main()
