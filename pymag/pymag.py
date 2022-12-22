@@ -95,6 +95,8 @@ def save(input_image_name, \
             else:
                 flag_buffer_a[ y * ( output_pixels_x // 2 ) + x ] = 1
                 flag_buffer_b.append(( f0 & 0xf ) << 4 | ( f1 & 0xf ))
+    if ( len(flag_buffer_b) % 2 != 0 ):     # padding
+        flag_buffer_b.append(0)
 
     # flag data bytes A
     flag_data_bytes_a = bytearray( len( flag_buffer_a ) // 8 )
