@@ -15,7 +15,7 @@ scan_offset_x = [  0, -1, -2, -4,  0, -1,  0, -1, -2,  0, -1, -2,  0, -1, -2,   
 scan_offset_y = [  0,  0,  0,  0, -1, -1, -2, -2, -2, -4, -4, -4, -8, -8, -8, -16 ]   
 scan_order    = [  1,  4,  5,  6,  7,  9, 10,  2,  8, 11, 12, 13, 14,  3, 15 ]
 
-# do convertion and save
+# convert and save
 def save(input_image_name, \
          output_image_name, \
          output_size_x = 768, \
