@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="pymag",
-    version="0.0.3",
+    version="0.0.4",
     author="tantanGH",
     author_email="tantanGH@github",
     license='MIT',
@@ -20,7 +20,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'pymag=pymag.__main__:main'
+            'pymag=pymag.pymag:main'
         ]
     },
     packages=setuptools.find_packages(),
