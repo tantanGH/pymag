@@ -19,24 +19,18 @@ X680x0が現役だった時代に広く利用されていた軽量画像フォ�
 
 ### 使い方
 
-pymag はパスが通っていれば直接コマンドラインツールとして利用できます。基本的には変換元となる画像ファイル名と、変換先となるMAGファイル名を与えるだけです。
+pymag は直接コマンドラインツールとして利用できます。例えば macOS であれば以下にパスを通しておいてください。
 
-    pymag <input-image-filename> <output-image-filename>
+    ~/Library/Python/3.9/bin/
 
-ヘルプを見るには `-h` オプションまたは `--help` を使ってください。
+基本的には変換元となる画像ファイル名と、変換先となるMAGファイル名を与えるだけです。
+
+    pymag [options] <input-image-filename> <output-image-filename>
+
+指定できるoptionについてのヘルプを見るには `-h` オプションまたは `--help` を使ってください。
 
     pymag -h
     pymag --help
-
-また、python の `-m` オプションと共に使うこともできます。
-
-    python3 -m pymag <input-image-filename> <output-image-filename>
-
-ライブラリとして以下のように利用することもできます。
-
-    import pymag
-
-    pymag.save(infile,outfile,...)
 
 ---
 

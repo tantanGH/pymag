@@ -44,12 +44,13 @@ def save(input_image_name, \
     for y in range( output_size_y ):
         for x in range( output_pixels_x ):
     
-            current_pixel = ( raw_image_bytes[ y * output_size_x + x * 4 + 0 ] & 0xf ) << 12 | \
-                            ( raw_image_bytes[ y * output_size_x + x * 4 + 1 ] & 0xf ) <<  8 | \
-                            ( raw_image_bytes[ y * output_size_x + x * 4 + 2 ] & 0xf ) <<  4 | \
-                            ( raw_image_bytes[ y * output_size_x + x * 4 + 3 ] & 0xf ) if ( pixel_size == 4 ) else \
-                            ( raw_image_bytes[ y * output_size_x + x * 2 + 0 ] & 0xff ) << 8 | \
-                            ( raw_image_bytes[ y * output_size_x + x * 2 + 1 ] & 0xff ) 
+            current_pixel = ( raw_image_bytes[ y * output_size_x + x * pixel_size + 0 ] & 0xf ) << 12 | \
+                            ( raw_image_bytes[ y * output_size_x + x * pixel_size + 1 ] & 0xf ) <<  8 | \
+                            ( raw_image_bytes[ y * output_size_x + x * pixel_size + 2 ] & 0xf ) <<  4 | \
+                            ( raw_image_bytes[ y * output_size_x + x * pixel_size + 3 ] & 0xf ) if ( pixel_size == 4 ) \
+                            else \
+                            ( raw_image_bytes[ y * output_size_x + x * pixel_size + 0 ] & 0xff ) << 8 | \
+                            ( raw_image_bytes[ y * output_size_x + x * pixel_size + 1 ] & 0xff ) 
 
             current_flag = 0
 
@@ -59,12 +60,13 @@ def save(input_image_name, \
                 if ( scan_x < 0 or scan_y < 0 ):
                     continue
 
-                scan_pixel = ( raw_image_bytes[ scan_y * output_size_x + scan_x * 4 + 0 ] & 0xf ) << 12 | \
-                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * 4 + 1 ] & 0xf ) <<  8 | \
-                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * 4 + 2 ] & 0xf ) <<  4 | \
-                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * 4 + 3 ] & 0xf ) if ( pixel_size == 4 ) else \
-                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * 2 + 0 ] & 0xff ) << 8 | \
-                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * 2 + 1 ] & 0xff )
+                scan_pixel = ( raw_image_bytes[ scan_y * output_size_x + scan_x * pixel_size + 0 ] & 0xf ) << 12 | \
+                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * pixel_size + 1 ] & 0xf ) <<  8 | \
+                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * pixel_size + 2 ] & 0xf ) <<  4 | \
+                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * pixel_size + 3 ] & 0xf ) if ( pixel_size == 4 ) \
+                            else \
+                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * pixel_size + 0 ] & 0xff ) << 8 | \
+                             ( raw_image_bytes[ scan_y * output_size_x + scan_x * pixel_size + 1 ] & 0xff )
 
                 if ( current_pixel == scan_pixel ):
                     current_flag = s
@@ -95,7 +97,9 @@ def save(input_image_name, \
             else:
                 flag_buffer_a[ y * ( output_pixels_x // 2 ) + x ] = 1
                 flag_buffer_b.append(( f0 & 0xf ) << 4 | ( f1 & 0xf ))
-    if ( len(flag_buffer_b) % 2 != 0 ):     # padding
+
+    # flag data B padding (if needed)
+    if ( len(flag_buffer_b) % 2 != 0 ):
         flag_buffer_b.append(0)
 
     # flag data bytes A
@@ -130,7 +134,7 @@ def save(input_image_name, \
     mag_check_data   = "MAKI02  "                           # 8 bytes
     mag_machine_code = "PYTN "                              # 5 bytes 
     mag_user_name    = ( output_user + " " * 19 )[0:19]     # 19 bytes
-    mag_memo         = f"{output_memo}\x1A"                 # variable + EOF(0x1A)
+    mag_memo         = output_memo + "\x1A"                 # variable + EOF(0x1A)
 
     check_data_bytes = bytes(mag_check_data + \
                              mag_machine_code + \
