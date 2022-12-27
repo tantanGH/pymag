@@ -24,6 +24,6 @@ setuptools.setup(
         ]
     },
     packages=setuptools.find_packages(),
-    python_requires=">=3.7",
-    setup_requires=["Pillow"],
+    python_requires=">=3.5",
+    install_requires=["Pillow"],
 )
