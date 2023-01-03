@@ -15,7 +15,7 @@ X680x0が現役だった時代に広く利用されていた軽量画像フォ�
 
     pip install git+https://github.com/tantanGH/pymag.git
 
-[詳細な日本語での導入ガイド](https://github.com/tantanGH/distribution/blob/main/windows_python_for_x68k.md)
+[Windowsユーザ向けPython導入ガイド](https://github.com/tantanGH/distribution/blob/main/windows_python_for_x68k.md)
 
 ---
 
